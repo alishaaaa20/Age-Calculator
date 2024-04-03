@@ -66,9 +66,9 @@
         var ageInSeconds = Math.floor((todayDate - dob) / 1000);
         var ageInMinutes = Math.floor(ageInSeconds / 60);
         var ageInHours = Math.floor(ageInMinutes / 60);
-        var ageInDays = Math.floor(ageInSeconds / (24 * 60 * 60));
-        var ageInWeeks = Math.floor(ageInDays / 7);
-        var remainingDays = ageInDays % 7;
+        var ageInDaysTotal = Math.floor(ageInSeconds / (24 * 60 * 60));
+        var ageInWeeks = Math.floor(ageInDaysTotal / 7);
+        var remainingDays = ageInDaysTotal % 7;
 
         document.getElementById("result").innerHTML =
           "Age: " +
@@ -92,7 +92,7 @@
           " days" +
           "<br>" +
           "Age in days: " +
-          ageInDays +
+          ageInDaysTotal +
           " days" +
           "<br>" +
           "Age in hours: " +
