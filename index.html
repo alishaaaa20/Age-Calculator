@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Age Calculator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+      }
+      .container {
+        text-align: center;
+      }
+      .result {
+        margin-top: 20px;
+        padding: 20px;
+        border: 2px solid #333;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Age Calculator</h2>
+      <div>
+        <label for="dob">Enter your birthdate:</label>
+        <input type="date" id="dob" />
+        <button onclick="calculateAge()">Calculate</button>
+      </div>
+      <div class="result" id="result">
+        <!-- Age results will be displayed here -->
+      </div>
+    </div>
+
+    <script>
+      function calculateAge() {
+        var dob = new Date(document.getElementById("dob").value);
+        var todayDate = new Date();
+
+        var ageInYears = todayDate.getFullYear() - dob.getFullYear();
+        var ageInMonths = todayDate.getMonth() - dob.getMonth();
+        var ageInDays = todayDate.getDate() - dob.getDate();
+
+        if (ageInDays < 0) {
+          ageInMonths--;
+          ageInDays += new Date(
+            todayDate.getFullYear(),
+            todayDate.getMonth(),
+            0
+          ).getDate();
+        }
+        if (ageInMonths < 0) {
+          ageInYears--;
+          ageInMonths += 12;
+        }
+
+        var ageInSeconds = Math.floor((todayDate - dob) / 1000);
+        var ageInMinutes = Math.floor(ageInSeconds / 60);
+        var ageInHours = Math.floor(ageInMinutes / 60);
+        var ageInDays = Math.floor(ageInSeconds / (24 * 60 * 60));
+        var ageInWeeks = Math.floor(ageInDays / 7); // Corrected calculation for weeks
+
+        document.getElementById("result").innerHTML =
+          "Age: " +
+          ageInYears +
+          " years " +
+          ageInMonths +
+          " months " +
+          ageInDays +
+          " days" +
+          "<br>" +
+          "Age in months: " +
+          (ageInYears * 12 + ageInMonths) +
+          " months " +
+          ageInDays +
+          " days" +
+          "<br>" +
+          "Age in weeks: " +
+          ageInWeeks +
+          " weeks " +
+          (ageInDays % 7) +
+          " days" +
+          "<br>" +
+          "Age in days: " +
+          ageInDays +
+          " days" +
+          "<br>" +
+          "Age in hours: " +
+          ageInHours +
+          " hours" +
+          "<br>" +
+          "Age in minutes: " +
+          ageInMinutes +
+          " minutes" +
+          "<br>" +
+          "Age in seconds: " +
+          ageInSeconds +
+          " seconds";
+      }
+    </script>
+  </body>
+</html>
